@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Fingerprint, TrendingUp, Share2, LayoutPanelLeft, Code2 } from 'lucide-react';
 import { services } from '../../data/content';
 import Pill from '../ui/Pill';
@@ -20,17 +20,46 @@ export default function Services() {
 
         <div className="mt-14 grid grid-cols-1 gap-16 md:grid-cols-[280px_1fr]">
           <div className="hidden md:block">
-            <div className="sticky top-32 flex flex-col items-start gap-6">
-              <motion.div
-                key={active}
-                initial={{ opacity: 0, scale: 0.8, rotate: -20 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-lg shadow-black/5"
-              >
-                <ActiveIcon size={32} strokeWidth={1.5} className="text-accent" />
-              </motion.div>
-              <span className="eyebrow text-faint">0{active + 1} / 0{services.length}</span>
+            <div className="sticky top-32 flex flex-col items-start gap-8">
+              <div className="relative flex h-24 w-24 items-center justify-center">
+                {/* Slow-spinning dashed ring — idles continuously, independent
+                    of which service icon is currently showing. */}
+                <span className="animate-spin-slow absolute inset-0 rounded-full border border-dashed border-black/15" />
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-lg shadow-black/5">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.div
+                      key={active}
+                      initial={{ opacity: 0, scale: 0.7 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.7 }}
+                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                      <ActiveIcon size={30} strokeWidth={1.5} className="text-accent" />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
+
+              {/* Numbered progress rail — one tick per service, active one
+                  filled in, tracking scroll position via onViewportEnter below. */}
+              <div className="flex flex-col gap-2.5">
+                {services.map((service, i) => (
+                  <div key={service.title} className="flex items-center gap-3">
+                    <span
+                      className={`h-1.5 w-1.5 rounded-full transition-colors duration-300 ${
+                        i === active ? 'bg-accent' : 'bg-black/15'
+                      }`}
+                    />
+                    <span
+                      className={`eyebrow transition-colors duration-300 ${
+                        i === active ? 'text-ink' : 'text-faint'
+                      }`}
+                    >
+                      0{i + 1}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 

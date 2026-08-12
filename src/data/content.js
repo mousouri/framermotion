@@ -1,11 +1,14 @@
 // Site copy for Orionix — sourced from the live orionix.framer.website copy,
 // reproduced here as plain data so it can be edited without touching components.
 
+// Mirrors the source site's top-level nav (Works / About / Pricing / Services
+// / Blog). Its "Pages" item opened a dropdown of template-scaffolding pages
+// (style guide, etc.) with no real content, so it's intentionally left out.
 export const nav = [
   { label: 'Works', href: '#works' },
-  { label: 'Services', href: '#services' },
-  { label: 'Process', href: '#process' },
+  { label: 'About', href: '#top' },
   { label: 'Pricing', href: '#pricing' },
+  { label: 'Services', href: '#services' },
   { label: 'Blog', href: '#blog' },
 ];
 
