@@ -1,21 +1,29 @@
 import { motion } from 'framer-motion';
 import { Bold, Italic, Underline, ChevronDown } from 'lucide-react';
 import { hero } from '../../data/content';
+import heroPlaceholder from '../../assets/misc/hero-placeholder.svg';
 
 export default function Hero() {
   return (
     <section id="top" className="relative pt-44 pb-10 md:pt-56 md:pb-14">
-      <div className="container-x flex flex-col items-center text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="whitespace-pre-line text-sm text-muted md:text-base"
-        >
-          {hero.eyebrow}
-        </motion.p>
+      {/* Placeholder hero graphic — swap src/assets/misc/hero-placeholder.svg
+          (or point this import elsewhere) for the real artwork. Sized to
+          fill the same flanking area the copy sits in, cropped with
+          object-cover so any replacement image/SVG just drops in. Kept
+          faint for now so the watermark doesn't fight the headline —
+          bump the animate opacity once real artwork is in. */}
+      <motion.img
+        src={heroPlaceholder}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-135 w-full object-cover md:h-155"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.16 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      />
 
-        <h1 className="font-display mt-6 text-[2.75rem] leading-[1.05] text-ink sm:text-6xl md:text-7xl">
+      <div className="container-x relative flex flex-col items-center text-center">
+        <h1 className="font-display text-[2.75rem] leading-[1.05] text-ink sm:text-6xl md:text-7xl">
           <motion.span
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -33,6 +41,15 @@ export default function Hero() {
             {hero.titleLine2}
           </motion.span>
         </h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-6 whitespace-pre-line text-sm text-muted md:text-base"
+        >
+          {hero.eyebrow}
+        </motion.p>
 
         {/* Decorative "everything is editable" toolbar mockup — purely cosmetic,
             echoes the CMS-editor chrome from the source template. */}
