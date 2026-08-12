@@ -1,5 +1,7 @@
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+import CursorFollower from './components/ui/CursorFollower';
+import PageIntro from './components/ui/PageIntro';
 import Hero from './components/sections/Hero';
 import ClientLogos from './components/sections/ClientLogos';
 import Showreel from './components/sections/Showreel';
@@ -15,6 +17,8 @@ import CtaBanner from './components/sections/CtaBanner';
 function App() {
   return (
     <div className="min-h-screen bg-paper">
+      <PageIntro />
+      <CursorFollower />
       <Header />
       <main>
         <Hero />

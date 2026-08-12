@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 620" fill="none">
+  <!-- Placeholder for the hero's decorative graphic. Replace this file (or
+       point the import in Hero.jsx elsewhere) with real artwork — any
+       aspect ratio works, it's rendered with object-fit: cover. Kept
+       intentionally faint (see the opacity on the <img> in Hero.jsx) so it
+       reads as a watermark and doesn't fight the headline for attention. -->
+  <rect x="12" y="12" width="1576" height="596" rx="28" stroke="rgba(20,20,20,0.5)" stroke-width="2" stroke-dasharray="10 8" />
+  <g transform="translate(1330,60)" stroke="rgba(20,20,20,0.6)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" fill="none">
+    <rect x="0" y="0" width="140" height="105" rx="10" />
+    <circle cx="34" cy="32" r="11" />
+    <path d="M0 82 L42 46 L73 70 L102 39 L140 76" />
+  </g>
+</svg>

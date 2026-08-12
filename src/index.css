@@ -53,6 +53,14 @@ body {
   color: var(--color-paper);
 }
 
+/* Native cursor is hidden only once CursorFollower confirms a fine pointer
+   and no motion-reduction preference, so touch/reduced-motion visitors
+   always keep their normal cursor. */
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
 .font-display {
   font-family: var(--font-serif);
   font-feature-settings: "ss01" 1;
